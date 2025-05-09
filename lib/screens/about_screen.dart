@@ -22,7 +22,7 @@ class AboutScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 32),
                 const Text(
-                  'Best Android Post App Ever',
+                  'Flutter Intern Test',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
