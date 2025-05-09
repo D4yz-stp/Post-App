@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:teste/screens/about_screen.dart';
 import 'package:teste/screens/detail_screen.dart';
 import 'package:teste/widgets/post_list_item.dart';
 import '../models/post.dart';
@@ -35,8 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_currentIndex) {
       case 0:
         return _buildPostsList();
+      case 1:
+        return const AboutScreen();
       default:
-        return _buildPostsList();
+       return _buildPostsList();
     }
   }
 
