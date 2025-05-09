@@ -28,59 +28,72 @@ class _DetailScreenEstado extends State<DetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('${widget.post.title} Details'),
+        title: Text(widget.post.title), 
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
+        elevation: 0, 
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.post.title,
-              style: const TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Post Details',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                  const Text(
+                    'Comments:',
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(height: 16.0),
+                ],
               ),
             ),
-            const SizedBox(height: 24.0),
-            const Text(
-              'Comments:',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox(height: 16.0),
-            Expanded(
-              child: FutureBuilder<List<Comment>>(
-                future: futureComments,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(
+            FutureBuilder<List<Comment>>(
+              future: futureComments,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const SliverFillRemaining(
+                    child: Center(child: CircularProgressIndicator()),
+                  );
+                } else if (snapshot.hasError) {
+                  return SliverToBoxAdapter(
+                    child: Center(
                       child: Text(
                         'Error loading comments: ${snapshot.error}',
                         style: const TextStyle(color: Colors.red),
                       ),
-                    );
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Center(
-                      child: Text('No comments found for this post.'),
-                    );
-                  } else {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
+                    ),
+                  );
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return SliverToBoxAdapter(
+                    child: const Center(
+                      child: Text('No comments found for this post.')),
+                  );
+                } else {
+                  return SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
                         final comment = snapshot.data![index];
                         return CommentCard(comment: comment);
                       },
-                    );
-                  }
-                },
-              ),
+                      childCount: snapshot.data!.length,
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),

@@ -56,9 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
   }
-
-  //used the same logic from my project 
-  //in flutter haha, u just need to check
   BottomNavigationBar _buildBottomNavigationBar() {
     return BottomNavigationBar(
       currentIndex: _currentIndex,
@@ -79,13 +76,25 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
     );
   }
-
+  
   void _gotoDetailScreen(Post post) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DetailScreen(post: post),
-      ),
-    );
-  }
+  Navigator.push(
+    context,
+    PageRouteBuilder(
+      transitionDuration: const Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) => DetailScreen(post: post),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(1.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.easeInOut;
+        
+        var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+    ),
+  );
+}
 }
