@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../models/post.dart';
 
@@ -15,16 +14,49 @@ class PostListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2.0,
-      margin: const EdgeInsets.symmetric(vertical: 8.0),
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-        title: Text(
-          post.title,
-          style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+      elevation: 0,
+      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+        side: BorderSide(
+          color: Colors.grey.shade200,
+          width: 1,
         ),
-        trailing: const Icon(Icons.arrow_forward_ios, size: 16.0),
+      ),
+      child: InkWell(
         onTap: onTap,
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Text(
+                '${post.id}.',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Text(
+                  post.title,
+                  style: const TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+              Icon(
+                Icons.chevron_right,
+                size: 20.0,
+                color: Colors.grey.shade500,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
