@@ -41,7 +41,7 @@ class AboutScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 const Text(
-                  'Desenvolvido por:',
+                  'Made By:',
                   style: TextStyle(
                     fontSize: 18,
                     fontStyle: FontStyle.italic,

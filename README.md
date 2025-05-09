@@ -1,16 +1,23 @@
-# teste
+# Flutter Intern Test
 
-A new Flutter project.
+## Installation Steps
 
-## Getting Started
+1. Clone the repository:
+```bash
+git clone https://github.com/D4yz-stp/Post-App.git
+```
 
-This project is a starting point for a Flutter application.
+2. Get the dependencies:
+```bash
+flutter pub get
+```
 
-A few resources to get you started if this is your first Flutter project:
+3. Run the app:
+```bash
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Contact Information
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Name:** Divaldo Dias
+- **Email:** divaldodias849@gmail.com
