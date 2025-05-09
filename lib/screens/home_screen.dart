@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:teste/widgets/post_list_item.dart';
 import '../models/post.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,8 +41,20 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.all(8.0),
       itemCount: posts.length,
       itemBuilder: (context, index) {
-        return // I need to implement a class of PostCard
+        return PostListItem(
+          post: posts[index],
+          onTap: () => _gotoDetailScreen(posts[index]),
+        );
       },
+    );
+  }
+
+  void _gotoDetailScreen(Post post) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => /* detail screen widget in work */,
+      ),
     );
   }
 }
