@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
        return _buildPostsList();
     }
   }
+  
 
   Widget _buildPostsList() {
     return ListView.builder(
