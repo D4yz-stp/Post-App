@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:teste/screens/detail_screen.dart';
 import 'package:teste/widgets/post_list_item.dart';
 import '../models/post.dart';
 class HomeScreen extends StatefulWidget {
@@ -33,6 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (_currentIndex) {
       case 0:
         return _buildPostsList();
+      default:
+        return _buildPostsList();
     }
   }
 
@@ -53,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => /* detail screen widget in work */,
+        builder: (context) => DetailScreen(post: post),
       ),
     );
   }
