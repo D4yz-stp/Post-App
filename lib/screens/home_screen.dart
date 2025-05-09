@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         foregroundColor: Colors.white,
       ),
       body: _buildBody(),
+      bottomNavigationBar: _buildBottomNavigationBar()
     );
   }
 
@@ -49,6 +50,29 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: () => _gotoDetailScreen(posts[index]),
         );
       },
+    );
+  }
+
+  //used the same logic from my project 
+  //in flutter haha, u just need to check
+  BottomNavigationBar _buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      currentIndex: _currentIndex,
+      onTap: (index) {
+        setState(() {
+          _currentIndex = index;
+        });
+      },
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.info),
+          label: 'About',
+        ),
+      ],
     );
   }
 
